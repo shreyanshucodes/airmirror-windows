@@ -17,9 +17,9 @@
   </p>
 
   <p align="center">
-    <a href="https://github.com/shreyanshucodes/screen-mirroring-iphone-windows/releases"><img src="https://img.shields.io/badge/Download-Latest_Release-0ea5e9?style=for-the-badge&logo=windows&logoColor=white" alt="Download AirMirror"></a>
+    <a href="https://github.com/shreyanshucodes/airmirror-windows/releases"><img src="https://img.shields.io/badge/Download-Latest_Release-0ea5e9?style=for-the-badge&logo=windows&logoColor=white" alt="Download AirMirror"></a>
     <a href="#-quick-start-3-steps"><img src="https://img.shields.io/badge/Get_Started-1--Click_Launch-22c55e?style=for-the-badge&logo=rocket&logoColor=white" alt="Get Started"></a>
-    <a href="https://github.com/shreyanshucodes/screen-mirroring-iphone-windows/stargazers"><img src="https://img.shields.io/github/stars/shreyanshucodes/screen-mirroring-iphone-windows?style=for-the-badge&color=eab308&logo=github" alt="Stars"></a>
+    <a href="https://github.com/shreyanshucodes/airmirror-windows/stargazers"><img src="https://img.shields.io/github/stars/shreyanshucodes/airmirror-windows?style=for-the-badge&color=eab308&logo=github" alt="Stars"></a>
   </p>
 
   <p align="center">
