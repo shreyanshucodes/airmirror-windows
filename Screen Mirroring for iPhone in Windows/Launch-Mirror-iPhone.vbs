@@ -1,33 +1,21 @@
 ' Launch-Mirror-iPhone.vbs
-' Zero-flash double-click launcher for Screen Mirroring for iPhone in Windows
-' Creates a hidden PowerShell console to launch our mirroring script
-
+' Zero-flash double-click launcher for iPhone Mirror for Windows (GUI)
 Option Explicit
-Dim sh, fso, env, cmd, scriptPath, scriptDir
+Dim sh, fso, env, cmd, scriptDir, uiScript
 
 Set sh = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
 scriptDir = fso.GetParentFolderName(WScript.ScriptFullName)
-scriptDir = Replace(scriptDir, "/", "\") ' Normalize path separators
-If Right(scriptDir, 1) <> "\" Then scriptDir = scriptDir & "\"
+uiScript = fso.GetParentFolderName(scriptDir) & "\airplay-ui.ps1"
 
-' Build path to our PowerShell script
-scriptPath = scriptDir & "Mirror-iPhone.ps1"
-
-' Check if script exists
-If Not fso.FileExists(scriptPath) Then
-    MsgBox "ERROR: Could not find Mirror-iPhone.ps1" & vbCrLf & _
-           "Make sure this file is in the Screen Mirroring for iPhone in Windows folder.", _
-           vbCritical, "Screen Mirroring for iPhone"
-    WScript.Quit 1
+If Not fso.FileExists(uiScript) Then
+    uiScript = scriptDir & "\Mirror-iPhone.ps1"
 End If
 
-' Build the PowerShell command line
-env = sh.Environment("PROCESS")
-env("SCRIPT_PATH") = Chr(34) & scriptPath & Chr(34) ' Quote the path
+Set env = sh.Environment("PROCESS")
+env("PCAIRPLAY_UI") = uiScript
 
 cmd = "powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command " & _
-      Chr(34) & "$ErrorActionPreference = 'Stop'; Try { Add-Type -AssemblyName PresentationFramework; & $env:SCRIPT_PATH; if ($LASTEXITCODE) { throw ('Mirror-iPhone.ps1 exited with code ' + $LASTEXITCODE + '.') } } Catch { $m = 'Screen Mirroring failed to start.' + [Environment]::NewLine + [Environment]::NewLine + $_.Exception.Message; Try { Set-Content -LiteralPath ($env:TEMP + '\ScreenMirroringError.log') -Value ($m + [Environment]::NewLine + $_.ScriptStackTrace) } Catch {}; Try { [void][System.Windows.MessageBox]::Show($m, 'Screen Mirroring for iPhone', 'OK', 'Error') } Catch {}; exit 1 }" & Chr(34)
+      """$ErrorActionPreference='Continue'; try { Add-Type -AssemblyName PresentationFramework; & $env:PCAIRPLAY_UI; if ($LASTEXITCODE) { throw ('UI exited with code ' + $LASTEXITCODE + '.') } } catch { $m = 'iPhone Mirror failed to start.' + [Environment]::NewLine + [Environment]::NewLine + $_.Exception.Message; try { Set-Content -LiteralPath ($env:TEMP + '\pcairplay-crash.log') -Value ($m + [Environment]::NewLine + $_.ScriptStackTrace) } catch { }; try { [void][System.Windows.MessageBox]::Show($m, 'iPhone Mirror for Windows', 'OK', 'Error') } catch { }; exit 1 }"""
 
-' Launch with window style 0 (hidden) - no console flash whatsoever
 sh.Run cmd, 0, False

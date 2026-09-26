@@ -17,6 +17,7 @@ credit and licensing visible.
 
 ## What You Get
 
+- **Zero-Terminal Desktop UI** - double-click to launch without opening a command prompt
 - A named PC receiver that appears in iPhone Screen Mirroring
 - Sensible 1080p / 60 FPS defaults for demos
 - Optional PIN, fullscreen, A/V sync, capture-safe mode, and software decoding
@@ -24,28 +25,18 @@ credit and licensing visible.
 - Local logs under `%LOCALAPPDATA%\pcairplay`
 - No telemetry or cloud relay
 
-## Quick Start
+## Quick Start (No Terminal Required)
 
-1. Install [Apple Bonjour](https://support.apple.com/kb/DL999) if it is not
-   already installed through iTunes or Apple Devices.
-2. Clone this repository.
-3. Open **PowerShell as Administrator** in the repository folder.
-4. Run:
+1. Make sure [Apple Bonjour](https://support.apple.com/kb/DL999) is installed (or installed via iTunes).
+2. If this is your first time, run `setup.ps1` once as Administrator to open firewall ports.
+3. Simply **double-click** either:
+   - **`Launch-iPhone-Mirror.vbs`** (zero console flash!)
+   - **`Launch-iPhone-Mirror.cmd`**
+   - Or run `Create-Desktop-Shortcut.cmd` to pin **iPhone Mirror for Windows** right on your Desktop!
+4. Click **Start Mirroring** in the app.
+5. On your iPhone: open **Control Center** -> tap **Screen Mirroring** -> tap your PC name!
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\setup.ps1
-.\Screen Mirroring for iPhone in Windows\Mirror-iPhone.ps1
-```
-
-5. On the iPhone, open Control Center, tap **Screen Mirroring**, and choose
-   `My PC`.
-
-After setup, normal sessions can run without Administrator privileges:
-
-```powershell
-.\Screen Mirroring for iPhone in Windows\Mirror-iPhone.ps1 -Name "My Laptop"
-```
+*(CLI users can still run `.\Screen Mirroring for iPhone in Windows\Mirror-iPhone.ps1` with custom flags).*
 
 ## Useful Modes
 
