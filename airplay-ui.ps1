@@ -147,7 +147,7 @@ try {
     [xml]$xaml = @'
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="iPhone Mirror for Windows" Width="524" SizeToContent="Height"
+        Title="AirMirror" Width="524" SizeToContent="Height"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
         FontFamily="Segoe UI Variable Display, Segoe UI Variable Text, Segoe UI"
@@ -430,7 +430,7 @@ try {
 
       <!-- Title bar (drag handle) -->
       <Grid x:Name="TitleBar" Height="30" Background="#00000000">
-        <TextBlock Text="iPhone Mirror for Windows" Foreground="#8E8E93" FontSize="12"
+        <TextBlock Text="AirMirror" Foreground="#8E8E93" FontSize="12"
                    FontWeight="SemiBold" VerticalAlignment="Center"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
           <Button x:Name="MinBtn" Style="{StaticResource WinBtn}" Content="&#x2500;"
@@ -1607,7 +1607,7 @@ try {
             Add-Type -AssemblyName System.Windows.Forms, System.Drawing
             $script:notifyIcon = New-Object System.Windows.Forms.NotifyIcon
             $script:notifyIcon.Icon = New-Object System.Drawing.Icon $script:appIconPath
-            $script:notifyIcon.Text = 'iPhone Mirror for Windows'
+            $script:notifyIcon.Text = 'AirMirror for Windows'
             $script:notifyIcon.Visible = $true
 
             $script:notifyIcon.add_MouseClick({
@@ -1616,7 +1616,7 @@ try {
             })
 
             $trayMenu = New-Object System.Windows.Forms.ContextMenuStrip
-            $trayOpen = $trayMenu.Items.Add('Open iPhone Mirror')
+            $trayOpen = $trayMenu.Items.Add('Open AirMirror')
             $trayOpen.Font = New-Object System.Drawing.Font $trayOpen.Font, ([System.Drawing.FontStyle]::Bold)
             $trayOpen.add_Click({ & $script:trayRestore })
             [void]$trayMenu.Items.Add('-')
